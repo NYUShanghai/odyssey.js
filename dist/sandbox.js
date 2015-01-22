@@ -624,10 +624,6 @@ var BASEMAP_LIST =  [{
     url: "http:\/\/{s}.basemaps.cartocdn.com\/dark_all\/{z}\/{x}\/{y}.png",
     thumbnail: "http:\/\/{s}.basemaps.cartocdn.com\/dark_all\/6\/30\/24.png"
   }, {
-    title: 'CartoDB Light (Lite)',
-    url: "http:\/\/{s}.api.cartocdn.com\/base-light-nolabels\/{z}\/{x}\/{y}.png",
-    thumbnail: "https:\/\/cartocdn_a.global.ssl.fastly.net\/base-light\/6\/30\/24.png"
-  }, {
     title: 'CartoDB Positron (Lite)',
     url: "http:\/\/{s}.basemaps.cartocdn.com\/light_nolabels\/{z}\/{x}\/{y}.png",
     thumbnail: "http:\/\/{s}.basemaps.cartocdn.com\/light_nolabels\/6\/30\/24.png"
