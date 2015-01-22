@@ -620,6 +620,58 @@ var BASEMAP_LIST =  [{
     url: "https://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.day/{z}\/{x}\/{y}/256/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
     thumbnail: "https:\/\/2.maps.nlp.nokia.com\/maptile\/2.1\/maptile\/newest\/normal.day\/6\/30\/24\/256\/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24"
   }, {
+    title: 'Nokia Day Grey',
+    url: "https://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.day.grey/{z}\/{x}\/{y}/256/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
+    thumbnail: "https:\/\/2.maps.nlp.nokia.com\/maptile\/2.1\/maptile\/newest\/normal.day.grey\/6\/30\/24\/256\/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24"
+  }, {
+    title: 'Nokia Night',
+    url: "https://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.night/{z}\/{x}\/{y}/256/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
+    thumbnail: "https:\/\/2.maps.nlp.nokia.com\/maptile\/2.1\/maptile\/newest\/normal.night\/6\/30\/24\/256\/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24"
+  }, {
+    title: 'Nokia Day Transit',
+    url: "https://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.day.transit/{z}\/{x}\/{y}/256/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
+    thumbnail: "https:\/\/2.maps.nlp.nokia.com\/maptile\/2.1\/maptile\/newest\/normal.day.transit\/6\/30\/24\/256\/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24"
+  }, {
+    title: 'Nokia Carnav Day Grey',
+    url: "https://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/carnav.day.grey/{z}\/{x}\/{y}/256/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
+    thumbnail: "https:\/\/2.maps.nlp.nokia.com\/maptile\/2.1\/maptile\/newest\/carnav.day.grey\/6\/30\/24\/256\/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24"
+  }, {
+    title: 'Nokia Terrain Day',
+    url: "https://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/terrain.day/{z}\/{x}\/{y}/256/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
+    thumbnail: "https:\/\/2.maps.nlp.nokia.com\/maptile\/2.1\/maptile\/newest\/terrain.day\/6\/30\/24\/256\/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24"
+  }, {
+    title: 'Nokia Hybrid Day',
+    url: "https://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/hybrid.day/{z}\/{x}\/{y}/256/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
+    thumbnail: "https:\/\/2.maps.nlp.nokia.com\/maptile\/2.1\/maptile\/newest\/hybrid.day\/6\/30\/24\/256\/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24"
+  }, {
+    title: 'Nokia Satellite Day',
+    url: "https://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day/{z}\/{x}\/{y}/256/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
+    thumbnail: "https:\/\/2.maps.nlp.nokia.com\/maptile\/2.1\/maptile\/newest\/satellite.day\/6\/30\/24\/256\/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24"
+  }, {
+    title: 'Nokia Reduced Day',
+    url: "https://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/reduced.day/{z}\/{x}\/{y}/256/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
+    thumbnail: "https:\/\/2.maps.nlp.nokia.com\/maptile\/2.1\/maptile\/newest\/reduced.day\/6\/30\/24\/256\/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24"
+  }, {
+    title: 'Stamen Toner',
+    url: "http://{s}.tile.stamen.com/toner/{z}\/{x}\/{y}.jpg",
+    thumbnail: "http:\/\/a.tile.stamen.com\/toner\/6\/30\/24.jpg"
+  }, {
+    title: 'Stamen Toner Background',
+    url: "http://{s}.tile.stamen.com/toner-background/{z}\/{x}\/{y}.jpg",
+    thumbnail: "http:\/\/a.tile.stamen.com\/toner-background\/6\/30\/24.jpg"
+  }, {
+    title: 'Stamen Toner Lite',
+    url: "http://{s}.tile.stamen.com/toner-lite/{z}\/{x}\/{y}.jpg",
+    thumbnail: "http:\/\/a.tile.stamen.com\/toner-lite\/6\/30\/24.jpg"
+  }, {
+    title: 'Stamen Toner Lines',
+    url: "http://{s}.tile.stamen.com/toner-lines/{z}\/{x}\/{y}.jpg",
+    thumbnail: "http:\/\/a.tile.stamen.com\/toner-lines\/6\/30\/24.jpg"
+  }, {
+    title: 'Stamen Toner Hybrid',
+    url: "http://{s}.tile.stamen.com/toner-hybrid/{z}\/{x}\/{y}.jpg",
+    thumbnail: "http:\/\/a.tile.stamen.com\/toner-hybrid\/6\/30\/24.jpg"
+  }, {
     title: 'Stamen Watercolor',
     url: "http://{s}.tile.stamen.com/watercolor/{z}\/{x}\/{y}.jpg",
     thumbnail: "http:\/\/a.tile.stamen.com\/watercolor\/6\/30\/24.jpg"
