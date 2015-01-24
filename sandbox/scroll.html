@@ -18,7 +18,7 @@
   <div id="layout">
     <!--<div class="progress-bar"></div>-->
 
-    <div class="inner-header">
+    <div class="inner-header" id="inner-header">
       <div id="header"></div>
     </div>
 
@@ -118,11 +118,26 @@
 
       _resetActions: function(actions) {
         // update footer title and author
-        var title_ = actions.global.title === undefined ? '' : actions.global.title,
+
+        var header_background_ = actions.global.header_background === undefined ? '' : actions.global.header_background,
+            footer_background_ = actions.global.footer_background === undefined ? '' : actions.global.footer_background,
+            title_ = actions.global.title === undefined ? '' : actions.global.title,
             author_ = actions.global.author === undefined ? 'Using' : 'By '+actions.global.author+' using';
+
+        // check whether the color in the color collection
+        var temp_color = colorNameToHex(header_background_);
+        if (temp_color){
+            header_background_ = temp_color;
+        }
+        var temp_color = colorNameToHex(footer_background_);
+        if (temp_color){
+            footer_background_ = temp_color;
+        }
 
         document.getElementById('title').innerHTML = title_;
         document.getElementById('author').innerHTML = author_;
+        document.getElementById('inner-header').style.background = header_background_;
+        document.getElementById('credits').style.background = footer_background_;
         document.title = title_ + " | " + author_ +' Odyssey.js';
 
         var TRIGGER_LINE = this.map.getSize().y + 50;
@@ -171,6 +186,18 @@
         }
       }
     });
+
+    // convert nyupurple to #57068c, more color names could be added
+    function colorNameToHex(color)
+    {
+      var colors = {"nyupurple":"#57068c"};
+
+      if (typeof colors[color.toLowerCase()] != 'undefined')
+          return colors[color.toLowerCase()];
+
+      return false;
+    }
+
   </script>
 
   <script>
