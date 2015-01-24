@@ -54,9 +54,12 @@ body {
     text-align: center;
     min-height: 100%;
     background: #fff;
+    height: 100%;
 }
 html {
-    min-height: 100%}
+    min-height: 100%;
+    height: 100%;
+}
 .progress-bar {
     position: fixed;
     left: 0;
@@ -67,9 +70,12 @@ html {
     width: 20%;
     z-index: 2;
 }
-.inner-header {
-    background: #333;
+#inner-header {
+	background: #57068c;
     color: #fff;
+    padding: 20px 0 20px 400px;
+}
+#inner-header.horizontal {
     padding: 20px 0;
 }
 #layout {
@@ -143,31 +149,44 @@ html {
 #header blockquote *:first-child {
     margin-top: 0;
 }
+#map_container {
+	height: 100%;
+    width: 400px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+#map_container.horizontal {
+    height: 250px;
+    width: 100%;
+    position: static;
+    box-shadow: none;
+}
+#map_container.horizontal.attachTop {
+    position: fixed;
+    top: 0;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
 #map {
     width: 100%;
     height: 100%;
 }
-#map_container {
-    height: 250px;
-}
-#map_container.attachTop {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-}
 #content {
     padding: 40px 40px 80px;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 0 0 400px;
     text-align: left;
     min-height: 1800px;
+}
+#content.horizontal {
+    margin: 0 auto;
 }
 #content img {
     max-width: 100%;
     margin: 20px 0 0 0;
 }
-#content.attachMap {
+#content.horizontal.attachMap {
     margin-top: 250px;
 }
 #content>div {
