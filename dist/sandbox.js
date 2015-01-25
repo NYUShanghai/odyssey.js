@@ -95,7 +95,7 @@ function dialog(context) {
 
     selector.append('img')
       .attr('id', 'selectorImg')
-      .attr('src', 'https://cartocdn_a.global.ssl.fastly.net/base-light/8/214/104.png')
+      .attr('src', 'http://cartocdn_a.global.ssl.fastly.net/base-light/8/214/104.png')
       .attr('alt', '');
 
     selector.append('span')
