@@ -28,7 +28,7 @@
 
   <div id="credits">
     <span class="title" id="title">Title</span>
-    <span class="author"><strong id="author">By Name using</strong> <a href="http://cartodb.github.io/odyssey.js/">Odyssey.js</a><span>
+    <span class="author"><strong id="author">By Name using</strong> <a href="http://jackbdu.github.io/odyssey.js/">Odyssey.js</a><span>
   </div>
 
   <script src="http://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/cartodb.js"></script>
@@ -188,11 +188,13 @@
 
       _resetActions: function(actions) {
         // update footer title and author
-        var title_ = actions.global.title === undefined ? '' : actions.global.title,
+        var footer_background_ = actions.global.footer_background === undefined ? '' : actions.global.footer_background,
+            title_ = actions.global.title === undefined ? '' : actions.global.title,
             author_ = actions.global.author === undefined ? 'Using' : 'By '+actions.global.author+' using';
 
         document.getElementById('title').innerHTML = title_;
         document.getElementById('author').innerHTML = author_;
+        document.getElementById('credits').style.background = footer_background_;
         document.title = title_ + " | " + author_ +' Odyssey.js';
 
         var sl = actions;
