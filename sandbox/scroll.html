@@ -31,15 +31,20 @@
 
     <div id="credits">
       <span class="title" id="title">Title</span>
+      <span>
+          <audio id="music" class="hide" src="" oncanplay="onCanPlay();" controls autoplay loop></audio>
+          <button id="pButton" class="pause hide" onclick="play()"></button>
+      </span>
       <span class="author"><b id="author">By Name using</b> <a href="http://jackbdu.github.io/odyssey.js/">Odyssey.js</a><span>
     </div>
-    <audio id="music" src="" autoplay loop></audio> 
   </div> <!-- layout -->
 
   <script src="http://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/cartodb.js"></script>
   <script src="../dist/odyssey.js" charset="UTF-8"></script>
 
   <script>
+    var loadPlayButton = false;
+
     O.Template({
       init: function() {
         var baseurl = this.baseurl = 'http://{s}.api.cartocdn.com/base-light/{z}/{x}/{y}.png';
@@ -114,8 +119,9 @@
         }
 
         if (this.musicurl && (this.musicurl !== actions.global.musicurl)) {
-          this.musicurl = actions.global.musicurl || 'musicurl';
-          document.getElementById('music').src = this.musicurl;
+            this.musicurl = actions.global.musicurl || 'paste_muisc_url_here';
+            document.getElementById('music').src = this.musicurl;
+            $("#pButton").addClass("hide");
         }
 
         this._resetActions(actions);
@@ -220,6 +226,27 @@
           return colors[color.toLowerCase()];
 
       return false;
+    }
+
+    function play() {
+      // start music
+      if (music.paused) {
+        document.getElementById('music').play();
+        // remove play, add pause
+        pButton.className = "";
+        pButton.className = "pause";
+      } else { // pause music
+        document.getElementById('music').pause();
+        // remove pause, add play
+        pButton.className = "";
+        pButton.className = "play";
+      }
+    }
+
+    function onCanPlay() {
+      $("#pButton").removeClass("hide");
+      pButton.className = "";
+      pButton.className = "pause";
     }
 
   </script>
