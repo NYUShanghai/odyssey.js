@@ -70,6 +70,9 @@ html {
     width: 20%;
     z-index: 2;
 }
+#music {
+    display: none;
+}
 #inner-header {
 	background: #57068c;
     color: #fff;

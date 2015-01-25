@@ -17,7 +17,6 @@
 <body>
   <div id="layout">
     <!--<div class="progress-bar"></div>-->
-
     <div class="horizontal" id="inner-header">
       <div id="header"></div>
     </div>
@@ -32,8 +31,9 @@
 
     <div id="credits">
       <span class="title" id="title">Title</span>
-      <span class="author"><b id="author">By Name using</b> <a href="#">Odyssey.js</a><span>
+      <span class="author"><b id="author">By Name using</b> <a href="http://jackbdu.github.io/odyssey.js/">Odyssey.js</a><span>
     </div>
+    <audio id="music" src="" autoplay loop></audio> 
   </div> <!-- layout -->
 
   <script src="http://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/cartodb.js"></script>
@@ -47,6 +47,8 @@
           center: [0, 0],
           zoom: 4
         });
+
+        this.musicurl = "musicurl";
 
         this.map.scrollWheelZoom.disable();
 
@@ -68,9 +70,7 @@
 
       update: function(actions) {
         var self = this;
-
         this.story.clear();
-
         if (this.baseurl && (this.baseurl !== actions.global.baseurl)) {
           this.baseurl = actions.global.baseurl || 'http://0.api.cartocdn.com/base-light/{z}/{x}/{y}.png';
 
@@ -113,6 +113,11 @@
           return;
         }
 
+        if (this.musicurl && (this.musicurl !== actions.global.musicurl)) {
+          this.musicurl = actions.global.musicurl || 'musicurl';
+          document.getElementById('music').src = this.musicurl;
+        }
+
         this._resetActions(actions);
       },
 
@@ -140,6 +145,7 @@
         document.getElementById('inner-header').style.background = header_background_;
         document.getElementById('credits').style.background = footer_background_;
         document.title = title_ + " | " + author_ +' Odyssey.js';
+
         // console.log(orientation_);
         if (orientation_[0]==="h") {
             // console.log("horizontal");
@@ -149,7 +155,7 @@
             this.map._onResize();
             var TRIGGER_LINE = this.map.getSize().y + 50;
             // window.scrollTo(0, 0);
-            console.log(this.map);
+            // console.log(this.map);
         } else if (orientation_[0]==="v") {
             var TRIGGER_LINE = 50;
             // console.log("vertical");
