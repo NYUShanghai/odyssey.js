@@ -73,10 +73,11 @@ html {
 #pButton {
     position: relative;
     top: -9px;
+    left: 7px;
     height: 30px; 
     width: 30px;
     border: none;
-    background-size: 100% 100%;
+    background-size: 80% 80%;
     background-repeat: no-repeat;
     background-position: center;
     outline:none;
@@ -270,6 +271,7 @@ html {
     font-style: italic;
 }
 div#credits {
+    text-align: left;
     position: fixed;
     bottom: 0;
     left: 0;

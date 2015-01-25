@@ -30,12 +30,12 @@
     <div id="content" class="horizontal"></div>
 
     <div id="credits">
-      <span class="title" id="title">Title</span>
       <span>
           <audio id="music" class="hide" src="" oncanplay="onCanPlay();" controls autoplay loop></audio>
           <button id="pButton" class="pause hide" onclick="play()"></button>
       </span>
-      <span class="author"><b id="author">By Name using</b> <a href="http://jackbdu.github.io/odyssey.js/">Odyssey.js</a><span>
+      <span class="title" id="title">Title</span>
+      <span class="author"><strong id="author">By Name using</strong> <a href="http://jackbdu.github.io/odyssey.js/">Odyssey.js</a></span>
     </div>
   </div> <!-- layout -->
 
@@ -43,7 +43,6 @@
   <script src="../dist/odyssey.js" charset="UTF-8"></script>
 
   <script>
-    var loadPlayButton = false;
 
     O.Template({
       init: function() {

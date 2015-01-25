@@ -27,8 +27,12 @@
   </div>
 
   <div id="credits">
+    <span>
+        <audio id="music" class="hide" src="" oncanplay="onCanPlay();" controls autoplay loop></audio>
+        <button id="pButton" class="pause hide" onclick="play()"></button>
+    </span>
     <span class="title" id="title">Title</span>
-    <span class="author"><strong id="author">By Name using</strong> <a href="http://jackbdu.github.io/odyssey.js/">Odyssey.js</a><span>
+    <span class="author"><strong id="author">By Name using</strong> <a href="http://jackbdu.github.io/odyssey.js/">Odyssey.js</a></span>
   </div>
 
   <script src="http://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/cartodb.js"></script>
@@ -118,6 +122,8 @@
           attribution: 'data OSM - map CartoDB'
         }).addTo(map);
 
+        this.musicurl = "musicurl";
+
         // enanle keys to move
         O.Keys().on('map').left().then(seq.prev, seq)
         O.Keys().on('map').right().then(seq.next, seq)
@@ -183,6 +189,12 @@
           return;
         }
 
+        if (this.musicurl && (this.musicurl !== actions.global.musicurl)) {
+            this.musicurl = actions.global.musicurl || 'paste_muisc_url_here';
+            document.getElementById('music').src = this.musicurl;
+            $("#pButton").addClass("hide");
+        }
+
         this._resetActions(actions);
       },
 
@@ -237,6 +249,39 @@
         this.seq.current(n);
       }
     });
+
+    // convert nyupurple to #57068c, more color names could be added
+    function colorNameToHex(color)
+    {
+      var colors = {"nyupurple":"#57068c"};
+
+      if (typeof colors[color.toLowerCase()] != 'undefined')
+          return colors[color.toLowerCase()];
+
+      return false;
+    }
+
+    function play() {
+      // start music
+      if (music.paused) {
+        document.getElementById('music').play();
+        // remove play, add pause
+        pButton.className = "";
+        pButton.className = "pause";
+      } else { // pause music
+        document.getElementById('music').pause();
+        // remove pause, add play
+        pButton.className = "";
+        pButton.className = "play";
+      }
+    }
+
+    function onCanPlay() {
+      $("#pButton").removeClass("hide");
+      pButton.className = "";
+      pButton.className = "pause";
+    }
+
   </script>
 
   <script>
