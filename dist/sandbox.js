@@ -613,44 +613,44 @@ var TEMPLATE_LIST =  [{
 
 var BASEMAP_LIST =  [{
     title: 'CartoDB Light',
-    url: "https:\/\/cartocdn_a.global.ssl.fastly.net\/base-light\/{z}\/{x}\/{y}.png",
-    thumbnail: "https:\/\/cartocdn_a.global.ssl.fastly.net\/base-light\/8\/214\/104.png"
+    url: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-light\/{z}\/{x}\/{y}.png",
+    thumbnail: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-light\/8\/214\/104.png"
   }, {
     title: 'CartoDB Positron',
     url: "http:\/\/{s}.basemaps.cartocdn.com\/light_all\/{z}\/{x}\/{y}.png",
-    thumbnail: "http:\/\/{s}.basemaps.cartocdn.com\/light_all\/8\/214\/104.png"
+    thumbnail: "http:\/\/a.basemaps.cartocdn.com\/light_all\/8\/214\/104.png"
   }, {
     title: 'CartoDB Dark Matter',
     url: "http:\/\/{s}.basemaps.cartocdn.com\/dark_all\/{z}\/{x}\/{y}.png",
-    thumbnail: "http:\/\/{s}.basemaps.cartocdn.com\/dark_all\/8\/214\/104.png"
+    thumbnail: "http:\/\/a.basemaps.cartocdn.com\/dark_all\/8\/214\/104.png"
   }, {
     title: 'CartoDB Light (Lite)',
     url: "http:\/\/{s}.api.cartocdn.com\/base-light-nolabels\/{z}\/{x}\/{y}.png",
-    thumbnail: "https:\/\/cartocdn_a.global.ssl.fastly.net\/base-light\/8\/214\/104.png"
+    thumbnail: "http:\/\/a.api.cartocdn.com\/base-light-nolabels\/8\/214\/104.png"
   }, {
     title: 'CartoDB Positron (Lite)',
     url: "http:\/\/{s}.basemaps.cartocdn.com\/light_nolabels\/{z}\/{x}\/{y}.png",
-    thumbnail: "http:\/\/{s}.basemaps.cartocdn.com\/light_nolabels\/8\/214\/104.png"
+    thumbnail: "http:\/\/a.basemaps.cartocdn.com\/light_nolabels\/8\/214\/104.png"
   }, {
     title: 'CartoDB Dark Matter (Lite)',
     url: "http:\/\/{s}.basemaps.cartocdn.com\/dark_nolabels\/{z}\/{x}\/{y}.png",
-    thumbnail: "http:\/\/{s}.basemaps.cartocdn.com\/dark_nolabels\/8\/214\/104.png"
+    thumbnail: "http:\/\/a.basemaps.cartocdn.com\/dark_nolabels\/8\/214\/104.png"
   }, {
     title: 'CartoDB World Antique',
-    url: "https:\/\/cartocdn_a.global.ssl.fastly.net\/base-antique\/{z}\/{x}\/{y}.png",
-    thumbnail: "https:\/\/cartocdn_a.global.ssl.fastly.net\/base-antique\/8\/214\/104.png"
+    url: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-antique\/{z}\/{x}\/{y}.png",
+    thumbnail: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-antique\/8\/214\/104.png"
   }, {
     title: 'CartoDB World Eco',
-    url: "https:\/\/cartocdn_a.global.ssl.fastly.net\/base-eco\/{z}\/{x}\/{y}.png",
-    thumbnail: "https:\/\/cartocdn_a.global.ssl.fastly.net\/base-eco\/8\/214\/104.png"
+    url: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-eco\/{z}\/{x}\/{y}.png",
+    thumbnail: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-eco\/8\/214\/104.png"
   }, {
     title: 'CartoDB World Flat Blue',
-    url: "https:\/\/cartocdn_a.global.ssl.fastly.net\/base-flatblue\/{z}\/{x}\/{y}.png",
-    thumbnail: "https:\/\/cartocdn_a.global.ssl.fastly.net\/base-flatblue\/8\/214\/104.png"
+    url: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-flatblue\/{z}\/{x}\/{y}.png",
+    thumbnail: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-flatblue\/8\/214\/104.png"
   }, {
     title: 'CartoDB World Midnight Commander',
-    url: "https:\/\/cartocdn_a.global.ssl.fastly.net\/base-midnight\/{z}\/{x}\/{y}.png",
-    thumbnail: "https:\/\/cartocdn_a.global.ssl.fastly.net\/base-midnight\/8\/214\/104.png"
+    url: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-midnight\/{z}\/{x}\/{y}.png",
+    thumbnail: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-midnight\/8\/214\/104.png"
   }, {
     title: 'Nokia Day',
     url: "https://2.maps.nlp.nokia.com/maptile/2.1/maptile/newest/normal.day/{z}\/{x}\/{y}/256/png8?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
