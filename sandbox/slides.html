@@ -204,6 +204,11 @@
             title_ = actions.global.title === undefined ? '' : actions.global.title,
             author_ = actions.global.author === undefined ? 'Using' : 'By '+actions.global.author+' using';
 
+        var temp_color = colorNameToHex(footer_background_);
+        if (temp_color){
+            footer_background_ = temp_color;
+        }
+
         document.getElementById('title').innerHTML = title_;
         document.getElementById('author').innerHTML = author_;
         document.getElementById('credits').style.background = footer_background_;
