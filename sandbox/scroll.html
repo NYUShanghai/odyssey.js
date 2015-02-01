@@ -166,7 +166,10 @@
             $("#inner-header").removeClass("horizontal");
             $("#content").removeClass("horizontal");
             this.map._onResize();
-            document.getElementById('map_container').style.height = "100%";
+            // reset map height
+            // document.getElementById('map_container').style.height = "100%";
+            document.getElementById('inner-header').style.paddingLeft = map_breadth_;
+            document.getElementById('content').style.marginLeft = map_breadth_;
             document.getElementById('map_container').style.width = map_breadth_;
         } else if (orientation_[0]==="h") {
             // console.log("horizontal");
@@ -175,9 +178,11 @@
             $("#inner-header").addClass("horizontal");
             $("#content").addClass("horizontal");
             this.map._onResize();
-            var TRIGGER_LINE = this.map.getSize().y + 50;
             document.getElementById('map_container').style.width = "100%";
-            document.getElementById('map_container').style.height = map_breadth_;
+            document.getElementById('inner-header').style.paddingLeft = "auto";
+            document.getElementById('content').style.marginLeft = "auto";
+            // document.getElementById('map_container').style.height = map_breadth_;
+            var TRIGGER_LINE = this.map.getSize().y + 50;
             // window.scrollTo(0, 0);
             // console.log(this.map);
         } 
