@@ -6243,15 +6243,14 @@ function d3_rebind(target, source, method) {
 
         // ![Alt text](/path/to/img.jpg "Optional title")
         //      1          2            3       4         <--- captures
-        var m = text.match( /^!\{(.*?)\}[ \t]*\([ \t]*([^")]*?)(?:[ \t]+(["'])(.*?)\3)?[ \t]*\)/ );
+        var m = text.match( /^!\{(.*?)\}\{(.*?)\}[ \t]*\([ \t]*([^")]*?)(?:[ \t]+(["'])(.*?)\3)?[ \t]*\)/ );
 
         if ( m ) {
           if ( m[2] && m[2][0] === "<" && m[2][m[2].length-1] === ">" )
             m[2] = m[2].substring( 1, m[2].length - 1 );
 
           m[2] = this.dialect.inline.__call__.call( this, m[2], /\\/ )[0];
-
-          var attrs = { alt: m[1], href: m[2] || "" };
+          var attrs = { width: m[1], height: m[2], href: m[3] || "" };
           if ( m[4] !== undefined)
             attrs.title = m[4];
 
