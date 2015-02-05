@@ -1,3 +1,5 @@
+## This fork of odyssey.js is developed for NYU Shanghai academic use
+
 ## Develop
 
 We use Compass to organize and work with stylesheets.
