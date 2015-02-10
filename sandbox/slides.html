@@ -205,7 +205,8 @@
             google_font_ = actions.global.google_font === undefined ? '' : actions.global.google_font;
 
         // update backgrounds
-        var footer_background_ = actions.global.footer_background === undefined ? '' : actions.global.footer_background;
+        var footer_background_ = actions.global.footer_background === undefined ? '' : actions.global.footer_background,
+        slides_background_ = actions.global.slides_background === undefined ? '' : actions.global.slides_background;
 
         // update layouts
         var slides_width_ = actions.global.slides_width === undefined ? '' : actions.global.slides_width;
@@ -222,6 +223,10 @@
         if (temp_color){
             footer_background_ = temp_color;
         }
+        var temp_color = colorNameToHex(slides_background_);
+        if (temp_color){
+            slides_background_ = temp_color;
+        }
         var temp_color = colorNameToHex(text_color_);
         if (temp_color){
             text_color_ = temp_color;
@@ -236,6 +241,7 @@
         document.title = title_ + " | " + author_ +' Odyssey.js';
         // layouts
         document.getElementById('slides_container').style.width = slides_width_;
+        document.getElementById('slides_container').style.background = slides_background_;
         document.getElementById('credits').style.background = footer_background_;
 
         // style
@@ -252,7 +258,7 @@
         // create new story
         for(var i = 0; i < sl.length; ++i) {
           var slide = sl[i];
-          var tmpl = "<div class='slide' style='diplay:none'>";
+          var tmpl = "<div class='slide' style='display:none'>";
 
           tmpl += slide.html();
           tmpl += "</div>";
