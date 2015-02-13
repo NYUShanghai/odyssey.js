@@ -534,7 +534,8 @@ function files(md, template, callback) {
     });
 
     callback({
-      'odyssey.html': processHTML(results[0], md, relocateAssets)
+      'odyssey.html': processHTML(results[0], md, relocateAssets),
+      'sandboxCode.txt': md
     });
   }
 }
