@@ -241,7 +241,7 @@ function MarkerActions(marker) {
   _marker.addRemove = function(map, popup) {
     return Action({
       enter: function() {
-        marker.addTo(map).bindPopup(popup) ;
+        marker.addTo(map).bindPopup(popup);
       },
       exit: function() {
         map.removeLayer(marker);
