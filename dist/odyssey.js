@@ -238,10 +238,10 @@ function MarkerActions(marker) {
     });
   };
 
-  _marker.addRemove = function(map) {
+  _marker.addRemove = function(map, popup) {
     return Action({
       enter: function() {
-        marker.addTo(map);
+        marker.addTo(map).bindPopup(popup) ;
       },
       exit: function() {
         map.removeLayer(marker);
@@ -880,7 +880,7 @@ var mapActions = {
     },
     'show marker at current position': function() {
       var center = this.map.getCenter()
-      return 'L.marker([' + center.lat.toFixed(4) + ', ' + center.lng.toFixed(4) + ']).actions.addRemove(S.map)';
+      return 'L.marker([' + center.lat.toFixed(4) + ', ' + center.lng.toFixed(4) + ']).actions.addRemove(S.map, "untitled")';
     },
     'sleep': function() {
       return "O.Actions.Sleep(1000)";
