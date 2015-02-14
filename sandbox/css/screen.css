@@ -540,6 +540,12 @@ a.basemapSelector span {
     line-height: 33px;
     margin-left: 8px;
 }
+a.uploadButton {
+    background: transparent url('../img/uploadButtonIcon.png?1407168446') no-repeat 0 0;
+}
+input#fileElem{
+    display: none;
+}
 a.downloadButton {
     background: transparent url('../img/downloadButtonIcon.png?1407168446') no-repeat 0 0;
 }

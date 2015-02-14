@@ -145,6 +145,80 @@ function dialog(context) {
         }
       });
 
+
+    // handling uploading
+    optionsMap
+      .append('input')
+      .attr('type','file')
+      .attr('id','fileElem')
+      .attr('multiple','')
+      .on('change', function(e) {
+        d3.event.preventDefault();
+
+        function isSafari() {
+          if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+            return true;
+          }
+
+          return false;
+        }
+
+        function notOld() {
+          if (window.File && window.FileReader && window.FileList && window.Blob) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+
+        if (!isSafari() && notOld()) {
+          // var md = el.select('textarea').node().codemirror.getValue();
+          var f = this.files[0]; 
+
+          if (f) {
+            var r = new FileReader();
+            r.onload = function(e) { 
+              var contents = e.target.result;
+              var md = el.select('textarea').node().codemirror;
+              md.setValue(contents);
+            }
+            r.readAsText(f);
+          } else { 
+            alert("Failed to load file");
+          }
+          //   var files = evt.target.files; // FileList object
+
+          //   // files is a FileList of File objects. List some properties.
+          //   var output = [];
+          //   for (var i = 0, f; f = files[i]; i++) {
+          //     output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+          //                 f.size, ' bytes, last modified: ',
+          //                 f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+          //                 '</li>');
+          //   }
+          //   document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+
+          // exp.zip(md, context.template(), function(zip) {
+          //   saveAs(zip.generate({ type: 'blob' }), 'odyssey.zip');
+          // });
+        } else {
+          alert('Upload is not fully supported in this browser.');
+        }
+      });
+
+    optionsMap
+      .append('li')
+      .append('a')
+      .attr('id','uploadButton')
+      .attr('class','uploadButton')
+      .attr('href','#')
+      .attr('title','Upload story')
+      .on('click', function(e) {
+        var fileInput = document.getElementById('fileElem');
+        // click(fileInput); // Simulate the click with a custom event.
+        fileInput.click(); // Or, use the native click() of the file input.
+      });
+
     optionsMap
       .append('li')
       .append('a')
