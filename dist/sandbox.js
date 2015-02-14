@@ -151,7 +151,6 @@ function dialog(context) {
       .append('input')
       .attr('type','file')
       .attr('id','fileElem')
-      .attr('multiple','')
       .on('change', function(e) {
         d3.event.preventDefault();
 
@@ -174,33 +173,45 @@ function dialog(context) {
         if (!isSafari() && notOld()) {
           // var md = el.select('textarea').node().codemirror.getValue();
           var f = this.files[0]; 
-
-          if (f) {
-            var r = new FileReader();
-            r.onload = function(e) { 
-              var contents = e.target.result;
-              var md = el.select('textarea').node().codemirror;
-              md.setValue(contents);
+            if (f) {
+              var fileName = f.name;
+              var fileExtension = fileName.substring(fileName.lastIndexOf('.'),fileName.length).toLowerCase();
+              if (fileExtension==='.zip' || fileExtension==='.odyssey') {
+                var r = new FileReader();
+                r.onload = (function(theFile) {
+                return function(e) {
+                  try {
+                    // read the content of the file with JSZip
+                    var zip = new JSZip(e.target.result);
+                    // that, or a good ol' for(var entryName in zip.files)
+                    $.each(zip.files, function (index, zipEntry) {
+                      // the content is here : zipEntry.asText()
+                      var contents = zipEntry.asText();
+                      var md = el.select('textarea').node().codemirror;
+                      md.setValue(contents);
+                    });
+                  } catch(e) {
+                    alert(e);
+                  }
+                }
+              })(f);
+              r.readAsArrayBuffer(f);
+            } else if (fileExtension==='.txt' || fileExtension==='.md') {
+              var r = new FileReader();
+              r.onload = function(e) { 
+                var contents = e.target.result;
+                var md = el.select('textarea').node().codemirror;
+                md.setValue(contents);
+              }
+              r.readAsText(f);
+            } else {
+              alert("File format not supported!");
             }
-            r.readAsText(f);
+
           } else { 
             alert("Failed to load file");
           }
-          //   var files = evt.target.files; // FileList object
 
-          //   // files is a FileList of File objects. List some properties.
-          //   var output = [];
-          //   for (var i = 0, f; f = files[i]; i++) {
-          //     output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-          //                 f.size, ' bytes, last modified: ',
-          //                 f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-          //                 '</li>');
-          //   }
-          //   document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-
-          // exp.zip(md, context.template(), function(zip) {
-          //   saveAs(zip.generate({ type: 'blob' }), 'odyssey.zip');
-          // });
         } else {
           alert('Upload is not fully supported in this browser.');
         }
@@ -246,8 +257,10 @@ function dialog(context) {
 
         if (!isSafari() && notOld()) {
           var md = el.select('textarea').node().codemirror.getValue();
+          var m = md.match(/-title:[ \t]*"(.*?)"/i);
+          var zipName = m[1] + '.odyssey'
           exp.zip(md, context.template(), function(zip) {
-            saveAs(zip.generate({ type: 'blob' }), 'odyssey.zip');
+            saveAs(zip.generate({ type: 'blob' }), zipName);
           });
         } else {
           alert('Download is not fully supported in this browser.');
@@ -608,8 +621,8 @@ function files(md, template, callback) {
     });
 
     callback({
-      'odyssey.html': processHTML(results[0], md, relocateAssets),
-      'sandboxCode.txt': md
+      // 'odyssey.html': processHTML(results[0], md, relocateAssets),
+      'odyssey.md': md
     });
   }
 }
