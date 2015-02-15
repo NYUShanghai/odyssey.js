@@ -120,6 +120,7 @@ module.exports = {
   Audio: _dereq_('./html5audio'),
   Leaflet: {
     Marker: _dereq_('./leaflet/marker'),
+    // Circle: _dereq_('./leaflet/circle'),
     Map: _dereq_('./leaflet/map'),
     Popup: _dereq_('./leaflet/popup')
   },
@@ -228,6 +229,31 @@ module.exports = MapActions;
 
 var Action = _dereq_('../../story').Action;
 
+// function CircleActions(circle) {
+//   function _circle() {}
+
+//   _circle.addTo = function(map) {
+//     return Action(function() {
+//       circle.addTo(map);
+//     });
+//   };
+
+//   _circle.addRemove = function(map, popup) {
+//     return Action({
+//       enter: function() {
+//         circle.addTo(map).bindPopup(popup);
+//       },
+//       exit: function() {
+//         map.removeLayer(circle);
+//       }, 
+//       clear: function() {
+//         map.removeLayer(circle);
+//       }
+//     });
+//   };
+//   return _circle;
+// }
+
 function MarkerActions(marker) {
 
   function _marker() {}
@@ -296,11 +322,15 @@ if (typeof window.L !== 'undefined') {
   L.Marker.addInitHook(function () {
     this.actions = MarkerActions(this);
   });
+  // L.Path.addInitHook(function () {
+  //   this.actions = CircleActions(this);
+  // })
   L.Path.addInitHook(function () {
     this.actions = PathActions(this);
   })
 }
 module.exports = MarkerActions;
+// module.exports = CircleActions;
 
 //marker.actions.addTo(map);
 //addState(, map.actions.moveTo(..).addMarker(m)
