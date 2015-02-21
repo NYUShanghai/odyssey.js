@@ -38,6 +38,8 @@
   <script src="http://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/cartodb.js"></script>
   <script src="../dist/odyssey.js" charset="UTF-8"></script>
 
+  <script src="../vendor/jquery-ui.min.js" charset="UTF-8"></script>
+
   <script>
     var resizePID;
 
@@ -334,6 +336,11 @@
 
     ga('create', 'UA-20934186-21', 'cartodb.github.io');
     ga('send', 'pageview');
+  </script>
+  <script type="text/javascript">
+    $(function() {
+      $( "#slides_container" ).draggable();
+    });
   </script>
   <style id="style" type="text/css"></style>
 </body>
