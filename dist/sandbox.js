@@ -373,6 +373,28 @@ function dialog(context) {
       });
     });
 
+    textarea.each(function() {
+      var codemirror = this.codemirror = CodeMirror.fromTextArea(this, {
+        mode: "markdown",
+        lineWrapping: true
+      });
+      var codemirror_wrap = el.select('.CodeMirror-wrap');
+      var showActions = debounce(function() { placeActionButtons(codemirror_wrap, codemirror); }, 500);
+      var hideActions = debounce(function() { el.selectAll('.actionButton').remove(); }, 20);
+      codemirror.on('scroll',  function() {
+        showActions();
+        hideActions();
+      });
+      this.codemirror.on('change', function(c) {
+        // change is raised at the beginning with any real change
+        if (c.getValue()) {
+          sendCode(c.getValue());
+          var codemirror_wrap = el.select('.CodeMirror-wrap');
+          placeActionButtons(codemirror_wrap, codemirror);
+        }
+      });
+    });
+
     function _expand() {
       var _t = d3.select('#editor_modal');
       var _hassClass = _t.classed('expanded')
@@ -736,7 +758,7 @@ var BASEMAP_LIST =  [{
     url: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-flatblue\/{z}\/{x}\/{y}.png",
     thumbnail: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-flatblue\/8\/214\/104.png"
   }, {
-    title: 'CartoDB World Midnight Commander',
+    title: 'CartoDB World Midnight',
     url: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-midnight\/{z}\/{x}\/{y}.png",
     thumbnail: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-midnight\/8\/214\/104.png"
   }, {
