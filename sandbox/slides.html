@@ -38,6 +38,8 @@
   <script src="http://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/cartodb.js"></script>
   <script src="../dist/odyssey.js" charset="UTF-8"></script>
 
+  <script src="../vendor/jquery-ui.min.js" charset="UTF-8"></script>
+
   <script>
     var resizePID;
 
@@ -205,7 +207,8 @@
             google_font_ = actions.global.google_font === undefined ? '' : actions.global.google_font;
 
         // update backgrounds
-        var footer_background_ = actions.global.footer_background === undefined ? '' : actions.global.footer_background;
+        var footer_background_ = actions.global.footer_background === undefined ? '' : actions.global.footer_background,
+        slides_background_ = actions.global.slides_background === undefined ? '' : actions.global.slides_background;
 
         // update layouts
         var slides_width_ = actions.global.slides_width === undefined ? '' : actions.global.slides_width;
@@ -213,6 +216,7 @@
         var text_font_size_ = actions.global.text_font_size === undefined ? '' : actions.global.text_font_size,
             text_font_family_ = actions.global.text_font_family === undefined ? '' : actions.global.text_font_family,
             text_color_ = actions.global.text_color === undefined ? '' : actions.global.text_color,
+            text_line_height_ = actions.global.text_line_height === undefined ? '' : actions.global.text_line_height,
             heading_font_size_ = actions.global.heading_font_size === undefined ? '' : actions.global.heading_font_size;
             heading_font_family_ = actions.global.heading_font_family === undefined ? '' : actions.global.heading_font_family;
             heading_color_ = actions.global.heading_color === undefined ? '' : actions.global.heading_color;
@@ -221,6 +225,10 @@
         var temp_color = colorNameToHex(footer_background_);
         if (temp_color){
             footer_background_ = temp_color;
+        }
+        var temp_color = colorNameToHex(slides_background_);
+        if (temp_color){
+            slides_background_ = temp_color;
         }
         var temp_color = colorNameToHex(text_color_);
         if (temp_color){
@@ -236,12 +244,13 @@
         document.title = title_ + " | " + author_ +' Odyssey.js';
         // layouts
         document.getElementById('slides_container').style.width = slides_width_;
+        document.getElementById('slides_container').style.background = slides_background_;
         document.getElementById('credits').style.background = footer_background_;
 
         // style
         var css_style = '';
         css_style += google_font_;
-        css_style += 'p {font-size:'+text_font_size_+' !important;font-family:'+text_font_family_+' !important;color:'+text_color_+' !important;}';
+        css_style += 'p {font-size:'+text_font_size_+' !important;font-family:'+text_font_family_+' !important;color:'+text_color_+' !important;line-height:'+text_line_height_+' !important;}';
         css_style += 'h1 {font-size:'+heading_font_size_+' !important;font-family:'+heading_font_family_+' !important;color:'+heading_color_+' !important;}';
         document.getElementById('style').innerHTML = css_style;
 
@@ -252,7 +261,7 @@
         // create new story
         for(var i = 0; i < sl.length; ++i) {
           var slide = sl[i];
-          var tmpl = "<div class='slide' style='diplay:none'>";
+          var tmpl = "<div class='slide' style='display:none'>";
 
           tmpl += slide.html();
           tmpl += "</div>";
@@ -327,6 +336,11 @@
 
     ga('create', 'UA-20934186-21', 'cartodb.github.io');
     ga('send', 'pageview');
+  </script>
+  <script type="text/javascript">
+    $(function() {
+      $( "#slides_container" ).draggable();
+    });
   </script>
   <style id="style" type="text/css"></style>
 </body>

@@ -134,6 +134,7 @@
         // update backgrounds
         var header_background_ = actions.global.header_background === undefined ? '' : actions.global.header_background,
             body_background_ = actions.global.body_background === undefined ? '' : actions.global.body_background,
+            slides_background_ = actions.global.slides_background === undefined ? '' : actions.global.slides_background,
             footer_background_ = actions.global.footer_background === undefined ? '' : actions.global.footer_background;
         // update layouts
         var orientation_ = actions.global.orientation === undefined ? '' : actions.global.orientation,
@@ -143,6 +144,7 @@
             text_font_family_ = actions.global.text_font_family === undefined ? '' : actions.global.text_font_family,
             text_color_ = actions.global.text_color === undefined ? '' : actions.global.text_color,
             text_color_top_ = actions.global.text_color_top === undefined ? '' : actions.global.text_color_top,
+            text_line_height_ = actions.global.text_line_height === undefined ? '' : actions.global.text_line_height,
             heading_font_size_ = actions.global.heading_font_size === undefined ? '' : actions.global.heading_font_size,
             heading_font_family_ = actions.global.heading_font_family === undefined ? '' : actions.global.heading_font_family,
             heading_color_ = actions.global.heading_color === undefined ? '' : actions.global.heading_color,
@@ -160,6 +162,10 @@
         var temp_color = colorNameToHex(body_background_);
         if (temp_color){
             body_background_ = temp_color;
+        }
+        var temp_color = colorNameToHex(slides_background_);
+        if (temp_color){
+            slides_background_ = temp_color;
         }
         var temp_color = colorNameToHex(text_color_);
         if (temp_color){
@@ -190,10 +196,11 @@
         // styles
         var css_style = '';
         css_style += google_font_;
-        css_style += 'p {font-size:'+text_font_size_+' !important;font-family:'+text_font_family_+' !important;color:'+text_color_+' !important;} ';
+        css_style += 'p {font-size:'+text_font_size_+' !important;font-family:'+text_font_family_+' !important;color:'+text_color_+' !important;line-height:'+text_line_height_+' !important;} ';
         css_style += '#header p {color:'+text_color_top_+' !important;} ';
         css_style += '#header h1 {color:'+heading_color_top_+' !important;} ';
         css_style += 'h1 {font-size:'+heading_font_size_+' !important;font-family:'+heading_font_family_+' !important;color:'+heading_color_+' !important;} ';
+        css_style += '#content div {background:'+slides_background_+';}';
         document.getElementById('style').innerHTML = css_style;
 
         // console.log(orientation_);

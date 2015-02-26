@@ -120,6 +120,7 @@ module.exports = {
   Audio: _dereq_('./html5audio'),
   Leaflet: {
     Marker: _dereq_('./leaflet/marker'),
+    // Circle: _dereq_('./leaflet/circle'),
     Map: _dereq_('./leaflet/map'),
     Popup: _dereq_('./leaflet/popup')
   },
@@ -228,6 +229,31 @@ module.exports = MapActions;
 
 var Action = _dereq_('../../story').Action;
 
+// function CircleActions(circle) {
+//   function _circle() {}
+
+//   _circle.addTo = function(map) {
+//     return Action(function() {
+//       circle.addTo(map);
+//     });
+//   };
+
+//   _circle.addRemove = function(map, popup) {
+//     return Action({
+//       enter: function() {
+//         circle.addTo(map).bindPopup(popup);
+//       },
+//       exit: function() {
+//         map.removeLayer(circle);
+//       }, 
+//       clear: function() {
+//         map.removeLayer(circle);
+//       }
+//     });
+//   };
+//   return _circle;
+// }
+
 function MarkerActions(marker) {
 
   function _marker() {}
@@ -238,10 +264,10 @@ function MarkerActions(marker) {
     });
   };
 
-  _marker.addRemove = function(map) {
+  _marker.addRemove = function(map, popup) {
     return Action({
       enter: function() {
-        marker.addTo(map);
+        marker.addTo(map).bindPopup(popup);
       },
       exit: function() {
         map.removeLayer(marker);
@@ -296,11 +322,15 @@ if (typeof window.L !== 'undefined') {
   L.Marker.addInitHook(function () {
     this.actions = MarkerActions(this);
   });
+  // L.Path.addInitHook(function () {
+  //   this.actions = CircleActions(this);
+  // })
   L.Path.addInitHook(function () {
     this.actions = PathActions(this);
   })
 }
 module.exports = MarkerActions;
+// module.exports = CircleActions;
 
 //marker.actions.addTo(map);
 //addState(, map.actions.moveTo(..).addMarker(m)
@@ -880,7 +910,7 @@ var mapActions = {
     },
     'show marker at current position': function() {
       var center = this.map.getCenter()
-      return 'L.marker([' + center.lat.toFixed(4) + ', ' + center.lng.toFixed(4) + ']).actions.addRemove(S.map)';
+      return 'L.marker([' + center.lat.toFixed(4) + ', ' + center.lng.toFixed(4) + ']).actions.addRemove(S.map, "untitled")';
     },
     'sleep': function() {
       return "O.Actions.Sleep(1000)";
@@ -6250,7 +6280,7 @@ function d3_rebind(target, source, method) {
             m[2] = m[2].substring( 1, m[2].length - 1 );
 
           m[2] = this.dialect.inline.__call__.call( this, m[2], /\\/ )[0];
-          var attrs = { width: m[1], height: m[2], href: m[3] || "" };
+          var attrs = { width: m[1], height: m[2], href: m[3].replace("youtube.com/watch?v=", "youtube.com/embed/") || "" };
           if ( m[4] !== undefined)
             attrs.title = m[4];
 

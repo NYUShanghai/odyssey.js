@@ -145,6 +145,91 @@ function dialog(context) {
         }
       });
 
+
+    // handling uploading
+    optionsMap
+      .append('input')
+      .attr('type','file')
+      .attr('id','fileElem')
+      .on('change', function(e) {
+        d3.event.preventDefault();
+
+        function isSafari() {
+          if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+            return true;
+          }
+
+          return false;
+        }
+
+        function notOld() {
+          if (window.File && window.FileReader && window.FileList && window.Blob) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+
+        if (!isSafari() && notOld()) {
+          // var md = el.select('textarea').node().codemirror.getValue();
+          var f = this.files[0]; 
+            if (f) {
+              var fileName = f.name;
+              var fileExtension = fileName.substring(fileName.lastIndexOf('.'),fileName.length).toLowerCase();
+              if (fileExtension==='.zip' || fileExtension==='.odyssey') {
+                var r = new FileReader();
+                r.onload = (function(theFile) {
+                return function(e) {
+                  try {
+                    // read the content of the file with JSZip
+                    var zip = new JSZip(e.target.result);
+                    // that, or a good ol' for(var entryName in zip.files)
+                    $.each(zip.files, function (index, zipEntry) {
+                      // the content is here : zipEntry.asText()
+                      var contents = zipEntry.asText();
+                      var md = el.select('textarea').node().codemirror;
+                      md.setValue(contents);
+                    });
+                  } catch(e) {
+                    alert(e);
+                  }
+                }
+              })(f);
+              r.readAsArrayBuffer(f);
+            } else if (fileExtension==='.txt' || fileExtension==='.md') {
+              var r = new FileReader();
+              r.onload = function(e) { 
+                var contents = e.target.result;
+                var md = el.select('textarea').node().codemirror;
+                md.setValue(contents);
+              }
+              r.readAsText(f);
+            } else {
+              alert("File format not supported!");
+            }
+
+          } else { 
+            alert("Failed to load file");
+          }
+
+        } else {
+          alert('Upload is not fully supported in this browser.');
+        }
+      });
+
+    optionsMap
+      .append('li')
+      .append('a')
+      .attr('id','uploadButton')
+      .attr('class','uploadButton')
+      .attr('href','#')
+      .attr('title','Upload story')
+      .on('click', function(e) {
+        var fileInput = document.getElementById('fileElem');
+        // click(fileInput); // Simulate the click with a custom event.
+        fileInput.click(); // Or, use the native click() of the file input.
+      });
+
     optionsMap
       .append('li')
       .append('a')
@@ -172,8 +257,10 @@ function dialog(context) {
 
         if (!isSafari() && notOld()) {
           var md = el.select('textarea').node().codemirror.getValue();
+          var m = md.match(/-title:[ \t]*"(.*?)"/i);
+          var zipName = m[1] + '.odyssey'
           exp.zip(md, context.template(), function(zip) {
-            saveAs(zip.generate({ type: 'blob' }), 'odyssey.zip');
+            saveAs(zip.generate({ type: 'blob' }), zipName);
           });
         } else {
           alert('Download is not fully supported in this browser.');
@@ -534,7 +621,8 @@ function files(md, template, callback) {
     });
 
     callback({
-      'odyssey.html': processHTML(results[0], md, relocateAssets)
+      // 'odyssey.html': processHTML(results[0], md, relocateAssets),
+      'odyssey.md': md
     });
   }
 }
@@ -599,11 +687,11 @@ var utils = _dereq_('./utils');
 var TEMPLATE_LIST =  [{
     title: 'slides',
     description: 'Display visualization chapters like slides in a presentation',
-    default: "```\n-google_font: \"@import url(http://fonts.googleapis.com/css?family=Ubuntu);\"\n-title: \"Odyssey example FTW\"\n-author: \"NYU Shanghai\"\n-slides_width: \"30%\"\n-text_font_size: \"100%\"\n-text_font_family: \"AleoRegular, Serif\"\n-text_color: \"black\"\n-heading_font_size: \"45px\"\n-heading_font_family: \"ubuntu\"\n-heading_color: \"black\"\n-footer_background: \"rgba(255, 255, 255, 0.7)\"\n-musicurl: \"paste_muisc_url_here\"\n```\n\n#Your first odyssey.js story\n```\n- center: [40.7348, -73.9970]\n- zoom: 9\nL.marker([40.7348, -73.9970]).actions.addRemove(S.map)\n```\n\nMove the map around and save the position by clicking on \"ADD > Move map to the current position\". As you can see, now we are highlighting San Francisco.\n\nThen add here the description for your slide so it's shown on the left side box.\n\n\n#How to add more states\n```\n- center: [31.2259, 121.5340]\n- zoom: 9\nL.marker([31.2259, 121.5340]).actions.addRemove(S.map)\n```\n\nBy adding new [Markdown] (http://daringfireball.net/projects/markdown/]) h1 elements (#) you add new states to your story.\n\n\n#Adding images to your story\n```\n- center: [31.2259, 121.5340]\n- zoom: 13\n```\n\nBy default, images are also supported. \n\n![NYU Shanghai](http://shanghai.nyu.edu/sites/default/files/styles/content_page_slideshow_display/public/field/image/pudong.jpg?itok=sKfoffHK)\n\n#Adding youtube videos to your story\n```\n- center: [31.2259, 121.5340]\n- zoom: 13\n```\n\nBy default, youtube videos are also supported. \n\n!{400}{300}(https://www.youtube.com/embed/2r1BzXUbK78)\n\n#Exporting your story\n```\n- center: [31.2259, 121.5340]\n- zoom: 3\n```\n\nYou have different options for exporting your odyssey.js visualization. You can either embed this using an iframe, publishing with a click on bl.ocks or just share the URL of this visualization.\n\nIf you want to customize it further, you can download the generated source code by clicking on the button below.\n\n#Advanced users\n\nCheck out our [documentation](/odyssey.js/documentation/) to learn how to use odyssey to create more custom things. It's crazy the amount of cool things that can be done with the library.\n\nAlso if you are a developer, take a look at our contributing guideline so you can push code to the actual library.\n\nCheers!\n"
+    default: "```\n-google_font: \"@import url(http://fonts.googleapis.com/css?family=Ubuntu);\"\n-title: \"Odyssey example FTW\"\n-author: \"NYU Shanghai\"\n-slides_width: \"30%\"\n-text_font_size: \"100%\"\n-text_font_family: \"AleoRegular, Serif\"\n-text_color: \"black\"\n-text_line_height: \"130%\"\n-heading_font_size: \"45px\"\n-heading_font_family: \"ubuntu\"\n-heading_color: \"black\"\n-slides_background: \"rgba(255,255,255, 0.8)\"\n-footer_background: \"rgba(255, 255, 255, 0.7)\"\n-musicurl: \"paste_muisc_url_here\"\n```\n\n#Your first odyssey.js story\n```\n- center: [40.7348, -73.9970]\n- zoom: 9\nL.marker([40.7348, -73.9970]).actions.addRemove(S.map, \"This is New York\")\n```\n\nMove the map around and save the position by clicking on \"ADD > Move map to the current position\". As you can see, now we are highlighting San Francisco.\n\nThen add here the description for your slide so it's shown on the left side box.\n\n\n#How to add more states\n```\n- center: [31.2259, 121.5340]\n- zoom: 9\nL.marker([31.2259, 121.5340]).actions.addRemove(S.map, \"This is Shanghai\")\n```\n\nBy adding new [Markdown] (http://daringfireball.net/projects/markdown/]) h1 elements (#) you add new states to your story.\n\n\n#Adding images to your story\n```\n- center: [31.2259, 121.5340]\n- zoom: 13\n```\n\nBy default, images are also supported. \n\n![NYU Shanghai](http://shanghai.nyu.edu/sites/default/files/styles/content_page_slideshow_display/public/field/image/pudong.jpg?itok=sKfoffHK)\n\n#Adding youtube videos to your story\n```\n- center: [31.2259, 121.5340]\n- zoom: 13\n```\n\nBy default, youtube videos are also supported. \n\n!{400}{300}(https://www.youtube.com/embed/2r1BzXUbK78)\n\n#Exporting your story\n```\n- center: [31.2259, 121.5340]\n- zoom: 3\n```\n\nYou have different options for exporting your odyssey.js visualization. You can either embed this using an iframe, publishing with a click on bl.ocks or just share the URL of this visualization.\n\nIf you want to customize it further, you can download the generated source code by clicking on the button below.\n\n#Advanced users\n\nCheck out our [documentation](/odyssey.js/documentation/) to learn how to use odyssey to create more custom things. It's crazy the amount of cool things that can be done with the library.\n\nAlso if you are a developer, take a look at our contributing guideline so you can push code to the actual library.\n\nCheers!\n"
   }, {
     title: 'scroll',
     description: 'Create a visualization that changes as your reader moves through your narrative',
-    default: "```\n-google_font: \"@import url(http://fonts.googleapis.com/css?family=Ubuntu);\"\n-title: \"Odyssey example FTW\"\n-author: \"NYU Shanghai\"\n//BACKGROUNDS:\n-header_background: \"nyupurple\"\n-body_background: \"0 0 / 100% 100%  url(http://www.psdgraphics.com/file/colorful-triangles-background.jpg) fixed\"\n-footer_background: \"rgba(255, 255, 255, 0.7)\"\n//LAYOUT:\n-orientation: \"horizontal\"\n-text_font_size: \"100%\"\n-text_font_family: \"AleoRegular, Serif\"\n-text_color: \"black\"\n-text_color_top: \"white\"\n-heading_font_size: \"45px\"\n-heading_font_family: \"ubuntu\"\n-heading_color: \"black\"\n-heading_color_top: \"white\"\n-musicurl: \"paste_muisc_url_here\"\n```\n\n#Your first odyssey.js story\n```\n- center: [40.7348, -73.9970]\n- zoom: 9\nL.marker([40.7348, -73.9970]).actions.addRemove(S.map)\n```\n\nMove the map around and save the position by clicking on \"ADD > Move map to the current position\". As you can see, now we are highlighting San Francisco.\n\nThen add here the description for your slide so it's shown on the left side box.\n\n\n#How to add more states\n```\n- center: [31.2259, 121.5340]\n- zoom: 9\nL.marker([31.2259, 121.5340]).actions.addRemove(S.map)\n```\n\nBy adding new [Markdown] (http://daringfireball.net/projects/markdown/]) h1 elements (#) you add new states to your story.\n\n\n#Adding images to your story\n```\n- center: [31.2259, 121.5340]\n- zoom: 13\n```\n\nBy default, images are also supported. \n\n![NYU Shanghai](http://shanghai.nyu.edu/sites/default/files/styles/content_page_slideshow_display/public/field/image/pudong.jpg?itok=sKfoffHK)\n\n#Adding youtube videos to your story\n```\n- center: [31.2259, 121.5340]\n- zoom: 13\n```\n\nBy default, youtube videos are also supported. \n\n!{400}{300}(https://www.youtube.com/embed/2r1BzXUbK78)\n\n#Exporting your story\n```\n- center: [31.2259, 121.5340]\n- zoom: 3\n```\n\nYou have different options for exporting your odyssey.js visualization. You can either embed this using an iframe, publishing with a click on bl.ocks or just share the URL of this visualization.\n\nIf you want to customize it further, you can download the generated source code by clicking on the button below.\n\n#Advanced users\n\nCheck out our [documentation](/odyssey.js/documentation/) to learn how to use odyssey to create more custom things. It's crazy the amount of cool things that can be done with the library.\n\nAlso if you are a developer, take a look at our contributing guideline so you can push code to the actual library.\n\nCheers!\n"
+    default: "```\n-google_font: \"@import url(http://fonts.googleapis.com/css?family=Ubuntu);\"\n-title: \"Odyssey example FTW\"\n-author: \"NYU Shanghai\"\n//BACKGROUNDS:\n-header_background: \"nyupurple\"\n-body_background: \"0 0 / 100% 100%  url(http://www.psdgraphics.com/file/colorful-triangles-background.jpg) fixed\"\n-slides_background: \"rgba(255,255,255, 0.8)\"\n-footer_background: \"rgba(255, 255, 255, 0.7)\"\n//LAYOUT:\n-orientation: \"horizontal\"\n-text_font_size: \"100%\"\n-text_font_family: \"AleoRegular, Serif\"\n-text_color: \"black\"\n-text_color_top: \"white\"\n-text_line_height: \"130%\"\n-heading_font_size: \"45px\"\n-heading_font_family: \"ubuntu\"\n-heading_color: \"black\"\n-heading_color_top: \"white\"\n-musicurl: \"paste_muisc_url_here\"\n```\n\n#Your first odyssey.js story\n```\n- center: [40.7348, -73.9970]\n- zoom: 9\nL.marker([40.7348, -73.9970]).actions.addRemove(S.map, \"This is New York\")\n```\n\nMove the map around and save the position by clicking on \"ADD > Move map to the current position\". As you can see, now we are highlighting San Francisco.\n\nThen add here the description for your slide so it's shown on the left side box.\n\n\n#How to add more states\n```\n- center: [31.2259, 121.5340]\n- zoom: 9\nL.marker([31.2259, 121.5340]).actions.addRemove(S.map, \"This is Shanghai\")\n```\n\nBy adding new [Markdown] (http://daringfireball.net/projects/markdown/]) h1 elements (#) you add new states to your story.\n\n\n#Adding images to your story\n```\n- center: [31.2259, 121.5340]\n- zoom: 13\n```\n\nBy default, images are also supported. \n\n![NYU Shanghai](http://shanghai.nyu.edu/sites/default/files/styles/content_page_slideshow_display/public/field/image/pudong.jpg?itok=sKfoffHK)\n\n#Adding youtube videos to your story\n```\n- center: [31.2259, 121.5340]\n- zoom: 13\n```\n\nBy default, youtube videos are also supported. \n\n!{400}{300}(https://www.youtube.com/embed/2r1BzXUbK78)\n\n#Exporting your story\n```\n- center: [31.2259, 121.5340]\n- zoom: 3\n```\n\nYou have different options for exporting your odyssey.js visualization. You can either embed this using an iframe, publishing with a click on bl.ocks or just share the URL of this visualization.\n\nIf you want to customize it further, you can download the generated source code by clicking on the button below.\n\n#Advanced users\n\nCheck out our [documentation](/odyssey.js/documentation/) to learn how to use odyssey to create more custom things. It's crazy the amount of cool things that can be done with the library.\n\nAlso if you are a developer, take a look at our contributing guideline so you can push code to the actual library.\n\nCheers!\n"
   }, {
     title: 'torque',
     description: 'Link story elements to moments in time using this animated map template',
@@ -648,7 +736,7 @@ var BASEMAP_LIST =  [{
     url: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-flatblue\/{z}\/{x}\/{y}.png",
     thumbnail: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-flatblue\/8\/214\/104.png"
   }, {
-    title: 'CartoDB World Midnight Commander',
+    title: 'CartoDB World Midnight',
     url: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-midnight\/{z}\/{x}\/{y}.png",
     thumbnail: "http:\/\/cartocdn_a.global.ssl.fastly.net\/base-midnight\/8\/214\/104.png"
   }, {
