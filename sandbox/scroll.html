@@ -162,6 +162,8 @@
         var temp_color = colorNameToHex(body_background_);
         if (temp_color){
             body_background_ = temp_color;
+        } else if (body_background_.substring(0,4)=="http") {
+            body_background_ = "0 0 / 100% 100%  url("+body_background_+") fixed"
         }
         var temp_color = colorNameToHex(slides_background_);
         if (temp_color){
