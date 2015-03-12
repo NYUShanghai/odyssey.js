@@ -140,11 +140,11 @@
         var orientation_ = actions.global.orientation === undefined ? '' : actions.global.orientation,
             map_breadth_ = actions.global.map_breadth === undefined ? '' : actions.global.map_breadth;
 
-        var text_font_size_ = actions.global.text_font_size === undefined ? '' : actions.global.text_font_size,
-            text_font_family_ = actions.global.text_font_family === undefined ? '' : actions.global.text_font_family,
-            text_color_ = actions.global.text_color === undefined ? '' : actions.global.text_color,
-            text_color_top_ = actions.global.text_color_top === undefined ? '' : actions.global.text_color_top,
-            text_line_height_ = actions.global.text_line_height === undefined ? '' : actions.global.text_line_height,
+        var paragraph_font_size_ = actions.global.paragraph_font_size === undefined ? '' : actions.global.paragraph_font_size,
+            paragraph_font_family_ = actions.global.paragraph_font_family === undefined ? '' : actions.global.paragraph_font_family,
+            paragraph_color_ = actions.global.paragraph_color === undefined ? '' : actions.global.paragraph_color,
+            paragraph_color_top_ = actions.global.paragraph_color_top === undefined ? '' : actions.global.paragraph_color_top,
+            paragraph_line_height_ = actions.global.paragraph_line_height === undefined ? '' : actions.global.paragraph_line_height,
             heading_font_size_ = actions.global.heading_font_size === undefined ? '' : actions.global.heading_font_size,
             heading_font_family_ = actions.global.heading_font_family === undefined ? '' : actions.global.heading_font_family,
             heading_color_ = actions.global.heading_color === undefined ? '' : actions.global.heading_color,
@@ -169,13 +169,13 @@
         if (temp_color){
             slides_background_ = temp_color;
         }
-        var temp_color = colorNameToHex(text_color_);
+        var temp_color = colorNameToHex(paragraph_color_);
         if (temp_color){
-            text_color_ = temp_color;
+            paragraph_color_ = temp_color;
         }
-        var temp_color = colorNameToHex(text_color_top_);
+        var temp_color = colorNameToHex(paragraph_color_top_);
         if (temp_color){
-            text_color_top_ = temp_color;
+            paragraph_color_top_ = temp_color;
         }
         var temp_color = colorNameToHex(heading_color_);
         if (temp_color){
@@ -198,8 +198,8 @@
         // styles
         var css_style = '';
         css_style += google_font_;
-        css_style += 'p {font-size:'+text_font_size_+' !important;font-family:'+text_font_family_+' !important;color:'+text_color_+' !important;line-height:'+text_line_height_+' !important;} ';
-        css_style += '#header p {color:'+text_color_top_+' !important;} ';
+        css_style += 'p {font-size:'+paragraph_font_size_+' !important;font-family:'+paragraph_font_family_+' !important;color:'+paragraph_color_+' !important;line-height:'+paragraph_line_height_+' !important;} ';
+        css_style += '#header p {color:'+paragraph_color_top_+' !important;} ';
         css_style += '#header h1 {color:'+heading_color_top_+' !important;} ';
         css_style += 'h1 {font-size:'+heading_font_size_+' !important;font-family:'+heading_font_family_+' !important;color:'+heading_color_+' !important;} ';
         css_style += '#content div {background:'+slides_background_+';}';
