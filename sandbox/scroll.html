@@ -165,6 +165,12 @@
         } else if (body_background_.substring(0,4)=="http") {
             body_background_ = "0 0 / 100% 100%  url("+body_background_+") fixed"
         }
+        if (!heading_color_top_){
+            heading_color_top_ = "white";
+        }
+        if (!paragraph_color_top_){
+            paragraph_color_top_ = "white";
+        }
         var temp_color = colorNameToHex(slides_background_);
         if (temp_color){
             slides_background_ = temp_color;
