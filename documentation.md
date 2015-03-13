@@ -4,6 +4,9 @@ title: 'Odyssey.js · Documentation'
 css_assets:
   - "/css/docs.css"
 ---
+## New Features
+
+[Click here](https://docs.google.com/a/nyu.edu/document/d/1O-AZYSQspwX8eUjaaqirdt5VVU56fq289bt6W9kbS6g/edit?usp=sharing) to visit the documentation for NYU Shanghai Odyssey, a special version of Odyssey designed for NYU Shanghai GPC.
 
 ## How it works
 
