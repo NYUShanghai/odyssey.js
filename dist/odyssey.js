@@ -6280,7 +6280,7 @@ function d3_rebind(target, source, method) {
             m[2] = m[2].substring( 1, m[2].length - 1 );
 
           m[2] = this.dialect.inline.__call__.call( this, m[2], /\\/ )[0];
-          var attrs = { width: m[1], height: m[2], href: m[3].replace("youtube.com/watch?v=", "youtube.com/embed/") || "" };
+          var attrs = { width: m[1], height: m[2], href: (m[3].replace("youtube.com/watch?v=", "youtube.com/embed/") + "?rel=0") || "" };
           if ( m[4] !== undefined)
             attrs.title = m[4];
 
