@@ -76,7 +76,9 @@ Heading color refers to the text color of all the headings in both slide and scr
 
 #### line height
 
+~~~md
 -paragraph_line_height: "130%"
+~~~
 
 ### YouTube Videos
 
@@ -104,7 +106,7 @@ L.marker([40.7352, -73.9855]).actions.addRemove(S.map, "untitled")
 
 - If you want to **add an image popup**, you have to add simple markdown code that replaces “untitled” with “\<img src=‘img_url’/>”. Here’s an example:
 
-~~~md
+~~~javascript
 L.marker([40.7352, -73.9855]).actions.addRemove(S.map, "<img width='200px' src='http://www.theworkingworld.org/images/NYSkyline.jpg'/>")
 ~~~
 
