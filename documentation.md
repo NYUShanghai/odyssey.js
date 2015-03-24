@@ -32,7 +32,7 @@ You can change the slide width by giving a value (a percentage indicates the sli
 
 #### orientation of the map
 
-The orientation can be either vertical or horizontal:
+The orientation can be either **vertical** or **horizontal**:
 
 ~~~md
 -orientation: "horizontal"
@@ -100,9 +100,9 @@ You can add text, image, videos and iframe to the markers in this version of Ody
 L.marker([40.7352, -73.9855]).actions.addRemove(S.map, "untitled")
 ~~~
 
-- If you want to add text popup when clicking on the marker, just change “untitled” between the quotation marks to the text you want. 
+- If you want to **add text popup** when clicking on the marker, just change “untitled” between the quotation marks to the text you want. 
 
-- If you want to add an image popup, you have to add simple markdown code that replaces “untitled” with “<img src=‘img_url’/>”. Here’s an example:
+- If you want to **add an image popup**, you have to add simple markdown code that replaces “untitled” with “\<img src=‘img_url’/>”. Here’s an example:
 
 ~~~md
 L.marker([40.7352, -73.9855]).actions.addRemove(S.map, "<img width='200px' src='http://www.theworkingworld.org/images/NYSkyline.jpg'/>")
