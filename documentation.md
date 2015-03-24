@@ -107,7 +107,7 @@ L.marker([40.7352, -73.9855]).actions.addRemove(S.map, "untitled")
 - If you want to **add an image popup**, you have to add simple markdown code that replaces “untitled” with “\<img src=‘img_url’/>”. Here’s an example:
 
 ~~~md
-L.marker([40.7352, -73.9855]).actions.addRemove(S.map, "\<img width='200px' src='http://www.theworkingworld.org/images/NYSkyline.jpg'/>")
+L.marker([40.7352, -73.9855]).actions.addRemove(S.map, "&lt;img width='200px' src='http://www.theworkingworld.org/images/NYSkyline.jpg'/&gt;")
 ~~~
 
 ### Simple HTML and CSS guide:
