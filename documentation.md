@@ -110,7 +110,7 @@ L.marker([40.7352, -73.9855]).actions.addRemove(S.map, "untitled")
 L.marker([40.7352, -73.9855]).actions.addRemove(S.map, "<img width='200px' src='http://www.theworkingworld.org/images/NYSkyline.jpg'/>")
 ~~~
 
-### Simple HTML and CSS guide:
+### Simple HTML and CSS
 
 You can use simple HTML and CSS tags if you want to add images and videos, or edit attributes like size and color.
 
