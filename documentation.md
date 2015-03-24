@@ -8,6 +8,115 @@ css_assets:
 
 [Click here](http://gpc.shanghai.nyu.edu/NYUOdysseyDocumentation.pdf) to visit the documentation for NYU Shanghai Odyssey, a special version of Odyssey designed for NYU Shanghai GPC.
 
+### Save and return to your story
+
+- You can save your Odyssey story by clicking on “download story” button at the bottom right of Odyssey sandbox. 
+
+- Click on the “upload story” button to upload  
+
+### Base Maps
+
+There is a range of base maps to choose from, including CartoDB and Nokia maps. Click at the bottom left of the sandbox to choose.
+
+### Slide Template
+
+#### slide width
+
+You can change the slide width by giving a value (a percentage indicates the slide width in comparison with the browser width). 
+
+~~~md
+-slides_width: "30%"
+~~~
+
+### Scroll Template
+
+#### orientation of the map
+
+The orientation can be either **vertical** or **horizontal**:
+
+~~~md
+-orientation: "horizontal"
+~~~
+
+#### background
+
+Change the background image/color of the scroll template by assigning a valid url or a color value.
+
+~~~md
+-body_background: "http://vougaelderlaw.com/wp-content/uploads/2014/10/texture-pattern-blue-background-wallpaper1.jpg"
+~~~
+
+### Audio Actions
+
+#### background music
+
+~~~md
+-musicurl: "paste_music_url_here"
+~~~
+
+### Text and Paragraph
+
+#### heading color
+
+Heading color refers to the text color of all the headings in both slide and scroll templates. You can change it by enter a color name, a hexadecimal value or rgba value.
+
+~~~md
+-heading_color: "black"
+-heading_color: "#000000"
+-heading_color: "rgba(0,0,0,1)"
+~~~
+
+#### paragraph color
+
+~~~md
+-paragraph_color: "black"
+-paragraph_color: "#000000"
+-paragraph_color: "rgba(0,0,0,0.8)"
+~~~
+
+#### line height
+
+-paragraph_line_height: "130%"
+
+### YouTube Videos
+
+Adding YouTube videos to Odyssey is simple, you can insert the video url:
+
+~~~md
+!{video_width}{video_height}(video_url)
+~~~
+
+Example:
+
+~~~md
+!{400}{300}(https://www.youtube.com/embed/2r1BzXUbK78)
+~~~
+
+### Add popup for Marker
+
+You can add text, image, videos and iframe to the markers in this version of Odyssey. When you add a marker, you will see something like this:
+
+~~~md
+L.marker([40.7352, -73.9855]).actions.addRemove(S.map, "untitled")
+~~~
+
+- If you want to **add text popup** when clicking on the marker, just change “untitled” between the quotation marks to the text you want. 
+
+- If you want to **add an image popup**, you have to add simple markdown code that replaces “untitled” with “\<img src=‘img_url’/>”. Here’s an example:
+
+~~~md
+L.marker([40.7352, -73.9855]).actions.addRemove(S.map, "<img width='200px' src='http://www.theworkingworld.org/images/NYSkyline.jpg'/>")
+~~~
+
+### Simple HTML and CSS guide:
+
+You can use simple HTML and CSS tags if you want to add images and videos, or edit attributes like size and color.
+
+#### Color
+
+Colors in Odyssey can be specified by Hexadecimal colors or RGBA colors. 
+[see more about CSS color values here](http://www.w3schools.com/cssref/css_colors.asp)
+
 ## How it works
 
 Odyssey.js is an open-source tool that allows you to combine maps, narratives, and other multimedia into a beautiful story. Creating new stories is simple, requiring nothing more than a modern web-browser and an idea. You enhance the narrative and multimedia of your stories using Actions (e.g. map movements, video and sound control, or the display or new content) that will let you tell your story in an exciting new way. Use our Templates to control the overall look and feel of your story in beautifully designed layouts.
