@@ -57,7 +57,7 @@ Change the background image/color of the scroll template by assigning a valid ur
 It should be either .ogg or .mp3 that is hosted online.
 
 ~~~md
-http://upload.wikimedia.org/wikipedia/commons/e/e6/Ludwig_van_Beethoven_-_symphony_no._5_in_c_minor%2C_op._67_-_i._allegro_con_brio.ogg
+-musicurl: "http://upload.wikimedia.org/wikipedia/commons/e/e6/Ludwig_van_Beethoven_-_symphony_no._5_in_c_minor%2C_op._67_-_i._allegro_con_brio.ogg"
 ~~~
 
 ### Text and Paragraph
