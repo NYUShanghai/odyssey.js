@@ -54,7 +54,7 @@ Change the background image/color of the scroll template by assigning a valid ur
 -musicurl: "paste_music_url_here"
 ~~~
 
-It should be either .ogg or .mp3 that is hosted online.
+It should be either **.ogg** or **.mp3** that is hosted online.
 
 ~~~md
 -musicurl: "http://upload.wikimedia.org/wikipedia/commons/e/e6/Ludwig_van_Beethoven_-_symphony_no._5_in_c_minor%2C_op._67_-_i._allegro_con_brio.ogg"
@@ -78,6 +78,13 @@ Heading color refers to the text color of all the headings in both slide and scr
 -paragraph_color: "black"
 -paragraph_color: "#000000"
 -paragraph_color: "rgba(0,0,0,0.8)"
+~~~
+
+#### font size
+
+~~~md
+-paragraph_font_size: "100%"
+-heading_font_size: "45px"
 ~~~
 
 #### line height
