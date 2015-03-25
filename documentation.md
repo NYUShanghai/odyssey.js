@@ -6,7 +6,7 @@ css_assets:
 ---
 ## New Features
 
-[Click here](http://gpc.shanghai.nyu.edu/NYUOdysseyDocumentation.pdf) to visit the documentation for NYU Shanghai Odyssey, a special version of Odyssey designed for NYU Shanghai GPC.
+Below are the features that are added in NYU Shanghai Odyssey, a special version of Odyssey designed for NYU Shanghai GPC.
 
 ### Save and return to your story
 
@@ -52,6 +52,12 @@ Change the background image/color of the scroll template by assigning a valid ur
 
 ~~~md
 -musicurl: "paste_music_url_here"
+~~~
+
+It should be either .ogg or .mp3 that is hosted online.
+
+~~~md
+http://upload.wikimedia.org/wikipedia/commons/e/e6/Ludwig_van_Beethoven_-_symphony_no._5_in_c_minor%2C_op._67_-_i._allegro_con_brio.ogg
 ~~~
 
 ### Text and Paragraph
@@ -106,7 +112,7 @@ L.marker([40.7352, -73.9855]).actions.addRemove(S.map, "untitled")
 
 - If you want to **add an image popup**, you have to add simple markdown code that replaces “untitled” with “\<img src=‘img_url’/>”. Here’s an example:
 
-~~~javascript
+~~~html
 L.marker([40.7352, -73.9855]).actions.addRemove(S.map, "<img width='200px' src='http://www.theworkingworld.org/images/NYSkyline.jpg'/>")
 ~~~
 
